@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  movieapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movieapp-nuxt
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - movieapp-network
+
+networks:
+  movieapp-network:
+    driver: bridge
+
